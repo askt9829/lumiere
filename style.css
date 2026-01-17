@@ -1,0 +1,1348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #060108;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    overflow-x: hidden; /* Разрешаем скролл для будущих блоков */
+    
+}
+
+
+.hero {
+    /* Фиксируем высоту первого экрана, чтобы он не разъезжался */
+    height: 100vh; 
+    min-height: 600px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: radial-gradient(circle at 10% 20%, rgba(110, 27, 177, 0.08) 0%, transparent 40%);
+}
+
+/* ШАПКА */
+.header {
+    position: absolute;
+    top: 30px; /* Фиксированный отступ сверху */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+}
+
+.logo {
+    /* Уменьшили логотип, чтобы он не давил */
+    width: clamp(150px, 15vw, 220px); 
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(110, 27, 177, 0.3));
+}
+
+/* КОНТЕЙНЕР СЕТКИ */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Уменьшили макс. ширину для концентрации в центре */
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; 
+    align-items: center;
+    gap: 40px;
+}
+
+/* ЛЕВАЯ ЧАСТЬ */
+.content-side {
+    z-index: 10;
+}
+
+.tagline {
+    color: #8a2be2;
+    font-weight: 700;
+    letter-spacing: 5px;
+    font-size: 11px; /* Компактный тег */
+    margin-bottom: 10px;
+    display: block;
+}
+
+.main-title {
+    /* Заголовок стал более человечным: от 50px до 110px */
+    font-size: clamp(50px, 7.5vw, 110px); 
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -4px;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #FFFFFF 45%, #777777 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.shadow-text {
+    opacity: 0.06;
+    margin-top: -8px;
+    background: none;
+    -webkit-text-fill-color: white;
+    /* Убираем тень из потока, чтобы не толкала текст вниз */
+    height: 0; 
+    overflow: visible;
+}
+
+.subtitle {
+    /* Уменьшили размер текста описания */
+    font-size: clamp(15px, 1.1vw, 18px); 
+    color: #888;
+    margin: 30px 0 40px 0;
+    max-width: 420px;
+    line-height: 1.6;
+}
+
+/* БЛОК АВТОРА */
+.author-block {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar-container {
+    position: relative;
+    width: 70px; /* Умеренный размер аватара */
+    height: 70px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #6e1bb1;
+    z-index: 2;
+    position: relative;
+}
+
+.avatar-glow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #6e1bb1;
+    border-radius: 50%;
+    filter: blur(15px);
+    opacity: 0.3;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.by {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.shiny-name {
+    /* Ник переливается, но не занимает пол-экрана */
+    font-size: 28px; 
+    font-weight: 900;
+    letter-spacing: -1px;
+    background: linear-gradient(to right, #fff 20%, #b026ff 40%, #b026ff 60%, #fff 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine { to { background-position: 200% center; } }
+
+/* ПРАВАЯ ЧАСТЬ */
+.visual-side {
+    display: flex;
+    justify-content: center;
+}
+
+.character-box {
+    position: relative;
+}
+
+.boy-img {
+    /* Теперь высота парня жестче контролируется */
+    height: clamp(350px, 60vh, 550px); 
+    width: auto;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+    animation: floating 6s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.main-glow {
+    position: absolute;
+    width: 25vw;
+    height: 25vw;
+    background: radial-gradient(circle, rgba(110, 27, 177, 0.15) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+/* АДАПТАЦИЯ ДЛЯ НИЗКИХ ЭКРАНОВ */
+@media (max-height: 750px) {
+    .main-title { font-size: 80px; }
+    .hero { padding: 40px 0; }
+    .subtitle { margin: 15px 0 25px 0; }
+}
+
+
+/* ================================================= */
+/* СЕКЦИЯ: ВВЕДЕНИЕ (FINAL PREMIUM DESIGN)           */
+/* ================================================= */
+
+.intro {
+    padding: 12vh 0;
+    background-color: #060108;
+    position: relative;
+    /* Убираем лишние скроллы, если они появятся от анимаций */
+    overflow: hidden; 
+}
+
+/* ФОНОВЫЙ ДЕКОР */
+.header-bg-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    font-size: clamp(120px, 15vw, 200px);
+    font-weight: 900;
+    color: #6e1bb1;
+    opacity: 0.12;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+    /* Анимация пульсации */
+    animation: questionPulse 6s ease-in-out infinite;
+}
+
+@keyframes questionPulse {
+    0%, 100% { opacity: 0.12; transform: translate(-50%, -60%) scale(1); }
+    50% { opacity: 0.18; transform: translate(-50%, -60%) scale(1.05); }
+}
+
+/* ЗАГОЛОВОК СЕКЦИИ */
+.section-header {
+    text-align: center;
+    margin-bottom: 10vh;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-size: clamp(38px, 4.5vw, 52px);
+    font-weight: 900; /* Максимальная толщина */
+    text-transform: uppercase;
+    letter-spacing: -2px; /* Плотный кернинг для стиля */
+    line-height: 1;
+    /* Металлический градиент */
+    background: linear-gradient(to bottom, #ffffff 50%, #888888 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(176, 38, 255, 0.2));
+}
+
+.section-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: #6e1bb1;
+    margin-top: 10px;
+    letter-spacing: 5px; /* Широкий кернинг для контраста */
+    text-transform: uppercase;
+}
+
+/* СЕТКА КОНТЕНТА */
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ТЕКСТОВАЯ ЧАСТЬ */
+.intro-text-side p {
+    font-size: 18px; /* Единый размер */
+    line-height: 1.8;
+    color: #999;
+    font-weight: 400;
+    margin-bottom: 25px; /* Единый отступ */
+}
+
+.intro-text-side strong {
+    color: #fff;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(110, 27, 177, 0.5); /* Единое подчеркивание */
+    padding-bottom: 2px;
+}
+
+/* ВИЗУАЛЬНАЯ ЧАСТЬ (БАБЛЫ) */
+.intro-visual-side {
+    display: flex;
+    justify-content: center;
+}
+
+.comparison-row {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.bubble-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bubble-unit:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+/* ПОДПИСИ ОРИГ / ПЕРЕВОД */
+.bubble-unit .label {
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    /* Glassmorphism плашка */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    padding: 8px 20px;
+    border-radius: 4px;
+    border-left: 3px solid #b026ff;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* КАРТИНКИ БАБЛОВ */
+.bubble-img {
+    width: auto;
+    height: clamp(300px, 48vh, 480px); /* Крупный размер под фото */
+    display: block;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+    border-radius: 10px; /* Совсем легкое скругление для мягкости */
+}
+
+/* Дополнительное свечение для бабла с переводом */
+.bubble-unit:last-child .bubble-img {
+    filter: drop-shadow(0 0 30px rgba(176, 38, 255, 0.15)) 
+            drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+}
+
+/* СТРЕЛКА МЕЖДУ БАБЛАМИ */
+.text-arrow {
+    font-size: 70px;
+    font-weight: 100; /* Очень тонкая и стильная */
+    color: #b026ff;
+    opacity: 0.5;
+    margin-top: 50px;
+    text-shadow: 0 0 20px rgba(176, 38, 255, 0.4);
+    transition: 0.3s ease;
+    user-select: none;
+}
+
+.comparison-row:hover .text-arrow {
+    opacity: 1;
+    transform: translateX(10px);
+}
+
+/* АДАПТИВ ДЛЯ НОУТБУКОВ */
+@media (max-width: 1024px) {
+    .intro-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .intro-text-side {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .comparison-row {
+        gap: 20px;
+    }
+
+    .bubble-img {
+        height: 350px;
+    }
+}
+
+
+
+/* ================================================= */
+/* СЕКЦИЯ: ТУТОРИАЛ (PREMIUM ART STYLE)              */
+/* ================================================= */
+
+.tutor-section {
+    padding: 12vh 0;
+    background-color: #060108;
+    position: relative;
+}
+
+.tutor-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* ИНФОРМАЦИЯ (ШАГИ) */
+.tutor-info-side {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.tutor-step-item {
+    position: relative;
+    padding-left: 40px;
+}
+
+.step-num {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 14px;
+    font-weight: 900;
+    color: #6e1bb1;
+    opacity: 0.5;
+}
+
+.tutor-step-item p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #bbb;
+}
+
+.tutor-step-item strong {
+    color: #fff;
+    font-weight: 800;
+}
+
+/* Тег фотошопа */
+.ps-tag {
+    background: #001e36;
+    color: #00a3ff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 900;
+    margin-left: 5px;
+    border: 1px solid rgba(0, 163, 255, 0.3);
+}
+
+/* СОВРЕМЕННЫЙ ПУТЬ (LINE STYLE) */
+.modern-path {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.path-box {
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.02);
+}
+
+.path-box.highlight {
+    color: #fff;
+    border-color: #b026ff;
+    background: rgba(176, 38, 255, 0.05);
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.1);
+}
+
+.path-arrow {
+    width: 30px;
+    height: 1px;
+    background: #444;
+    position: relative;
+}
+
+.path-arrow::after {
+    content: '';
+    position: absolute;
+    right: 0; top: -3px;
+    width: 7px; height: 7px;
+    border-right: 1px solid #444;
+    border-bottom: 1px solid #444;
+    transform: rotate(-45deg);
+}
+
+/* ВИЗУАЛ (СКРИНШОТ) */
+.glass-frame {
+    position: relative;
+    padding: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    border-radius: 12px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+}
+
+.tutor-img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+/* СТАТУС-ПОДПИСЬ */
+.tutor-status {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #b026ff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #b026ff;
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.tutor-status p {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #fff;
+}
+
+
+/* ================================================= */
+/* СЕКЦИЯ: ЦЕНТРОВКА (UPGRADED DESIGN)              */
+/* ================================================= */
+
+.alignment-section {
+    padding: 12vh 0;
+    background: #060108;
+}
+
+.alignment-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+/* ТЕКСТ */
+.alignment-text-side p {
+    font-size: 19px;
+    line-height: 1.8;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+/* ШАГИ С ПЛАШКАМИ */
+.workflow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.work-step {
+    position: relative;
+    padding: 40px 0; /* Отступы для плашек, чтобы не лезли на картинку */
+}
+
+.work-img {
+    height: 320px;
+    width: auto;
+    filter: drop-shadow(0 0 30px rgba(0,0,0,0.5));
+}
+
+.badge-action {
+    background: #ff00ff; /* Яркий неон */
+    color: #fff;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 8px 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border-radius: 4px;
+    box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3);
+    z-index: 10;
+}
+
+.badge-action:not(.bottom) { top: 0; }
+.badge-action.bottom { bottom: 0; text-align: center; line-height: 1.2; }
+
+.work-arrow {
+    font-size: 60px;
+    font-weight: 100;
+    color: #b026ff;
+}
+
+/* КАРТОЧКИ СРАВНЕНИЯ */
+.results-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+}
+
+.result-header {
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.result-body {
+    position: relative;
+    display: inline-block;
+}
+
+.result-img {
+    width: 100%;
+    max-width: 250px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+
+.indicator-icon {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    border: 4px solid #060108;
+}
+
+/* Цвета для ОШИБКИ */
+.result-card.error .result-header { color: #ff4b6b; }
+.result-card.error .indicator-icon { 
+    background: #ff4b6b; 
+    box-shadow: 0 0 20px rgba(255, 75, 107, 0.4); 
+}
+.result-card.error:hover { border-color: rgba(255, 75, 107, 0.3); }
+
+/* Цвета для УСПЕХА */
+.result-card.success .result-header { color: #00ff73; }
+.result-card.success .indicator-icon { 
+    background: #00ff73; 
+    box-shadow: 0 0 20px rgba(0, 255, 115, 0.4); 
+}
+.result-card.success:hover { border-color: rgba(0, 255, 115, 0.3); }
+
+/* Анимация при наведении */
+.result-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-10px);
+}
+
+
+/* Настройка всей полосы скролла */
+::-webkit-scrollbar {
+    width: 8px;
+}
+/* Фон скролла */
+::-webkit-scrollbar-track {
+    background: #060108;
+}
+/* Ползунок */
+::-webkit-scrollbar-thumb {
+    background: #6e1bb1;
+    border-radius: 10px;
+    border: 2px solid #060108; /* Создает эффект отступа */
+}
+/* Ползунок при наведении */
+::-webkit-scrollbar-thumb:hover {
+    background: #b026ff;
+}
+
+
+/* Твой существующий код остается без изменений, добавляем только это в конец: */
+
+/* АНИМАЦИИ ПОЯВЛЕНИЯ (REVEAL) */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    filter: blur(10px); /* Легкое размытие при появлении для красоты */
+}
+
+/* Когда скрипт добавляет этот класс, элемент "оживает" */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Задержки для последовательного появления */
+.content-side.active { transition-delay: 0.2s; }
+.visual-side.active { transition-delay: 0.4s; }
+
+/* Каскадное появление карточек в результатах */
+.result-card.reveal:nth-child(1) { transition-delay: 0.1s; }
+.result-card.reveal:nth-child(2) { transition-delay: 0.3s; }
+
+/* Плавный скролл всей страницы */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Улучшение наведения на картинки */
+.bubble-img, .tutor-img, .result-img, .work-img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.bubble-img:hover, .tutor-img:hover, .result-img:hover, .work-img:hover {
+    transform: scale(1.03) translateY(-5px);
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(176, 38, 255, 0.3));
+}
+
+/* Кастомный скроллбар (уже был, закрепим) */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #060108; }
+::-webkit-scrollbar-thumb { background: #6e1bb1; border-radius: 10px; border: 2px solid #060108; }
+::-webkit-scrollbar-thumb:hover { background: #b026ff; }
+
+/* СЕКЦИЯ СЛЕДУЮЩЕГО ШАГА */
+.next-step-section {
+    padding: 100px 0 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.next-step-wrapper {
+    background: linear-gradient(135deg, rgba(110, 27, 177, 0.1) 0%, rgba(6, 1, 8, 1) 100%);
+    border: 1px solid rgba(110, 27, 177, 0.3);
+    border-radius: 30px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.next-label {
+    color: #6e1bb1;
+    font-weight: 900;
+    letter-spacing: 4px;
+    font-size: 14px;
+}
+
+.next-title {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 15px 0;
+    text-transform: uppercase;
+}
+
+.next-description {
+    color: #888;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+/* КНОПКА ПЕРЕХОДА */
+.next-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+}
+
+.next-btn:hover {
+    background: #b026ff;
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(176, 38, 255, 0.6);
+}
+
+.btn-icon {
+    font-size: 20px;
+    transition: transform 0.4s ease;
+}
+
+.next-btn:hover .btn-icon {
+    transform: translateX(10px);
+}
+
+/* ВИЗУАЛ ДЛЯ КРАСОТЫ */
+.font-preview-card {
+    width: 150px;
+    height: 150px;
+    background: rgba(110, 27, 177, 0.2);
+    border: 2px dashed #6e1bb1;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    font-weight: 900;
+    color: #6e1bb1;
+    transform: rotate(15deg);
+    animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: rotate(15deg) translateY(0); }
+    50% { transform: rotate(15deg) translateY(-20px); }
+}
+
+/* КЛАССЫ ДЛЯ ТИПОГРАФИКИ (ЧИСТО ПОД НОВУЮ СТРАНИЦУ) */
+.hanging {
+    display: inline-block;
+    text-indent: -0.5em;
+    padding-left: 0.5em;
+}
+
+/* --- FIXED & CLEAN DESIGN --- */
+.lesson-header-fix { padding-top: 150px !important; }
+
+.intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px;
+}
+
+.theory-title {
+    /* Делаем заголовок реально большим и массивным */
+    font-size: 26px !important; 
+    font-weight: 900 !important; /* Максимальная жирность */
+    color: #b026ff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px !important;
+    display: block;
+}
+
+.theory-text {
+    /* Делаем текст тонким и читабельным */
+    font-size: 16px !important;
+    font-weight: 300 !important; /* Тонкий Montserrat */
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.7) !important; /* Чуть прозрачный белый для стиля */
+    margin: 0 !important;
+}
+
+/* Добавим немного отступа самим карточкам, чтобы текст не жался к краям */
+.intro-card {
+    padding: 40px !important;
+    background: rgba(20, 20, 25, 0.6) !important;
+    border: 1px solid rgba(110, 27, 177, 0.2) !important;
+    border-radius: 20px !important;
+}
+
+/* Редактор */
+.editor-frame {
+    display: grid; grid-template-columns: 260px 1fr;
+    background: #0b0b0f; border: 1px solid rgba(110, 27, 177, 0.3);
+    border-radius: 30px; overflow: hidden; margin-top: 60px;
+}
+
+.editor-sidebar { background: #15151a; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; }
+.sidebar-label { color: #b026ff; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; }
+
+.color-swatch-white {
+    width: 60px; height: 60px; background: white; border-radius: 15px; border: none; cursor: pointer; transition: 0.3s;
+}
+
+.btn-reset-ui {
+    background: transparent; border: 1px solid #333; color: #666; padding: 14px;
+    border-radius: 12px; cursor: pointer; font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 12px; transition: 0.3s; text-transform: uppercase;
+}
+.btn-reset-ui:hover { border-color: #ff4d4d; color: #ff4d4d; }
+
+.editor-canvas { background: #000; min-height: 550px; display: flex; align-items: center; justify-content: center; position: relative; }
+
+.manga-bubble-pro {
+    width: 420px; height: 420px; background: white; border-radius: 50%; border: 6px solid black;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
+}
+
+.axis-guide { position: absolute; left: 50%; height: 100%; width: 2px; background: red; opacity: 0.3; transform: translateX(-50%); }
+
+/* ТЕКСТ В БАБЛЕ (МАССИВНЫЙ) */
+.input-wrapper, .reference-line { 
+    font-family: 'Montserrat', sans-serif !important; 
+    font-weight: 900 !important; 
+    color: black !important;
+}
+
+.input-wrapper { font-size: 70px; display: flex; align-items: center; }
+#user-input-zone { min-width: 5px; outline: none; white-space: pre; color: black; }
+.reference-line { font-size: 70px; opacity: 0.1; margin-top: 10px; }
+
+/* УВЕДОМЛЕНИЯ */
+/* Выводим уведомления на самый верхний слой */
+.toast {
+    position: fixed; 
+    bottom: 40px; 
+    right: 40px; 
+    background: #b026ff; 
+    color: white;
+    padding: 22px 40px; 
+    border-radius: 20px; 
+    font-weight: 900; 
+    font-size: 16px;
+    box-shadow: 0 20px 50px rgba(176, 38, 255, 0.4);
+    
+    /* ВОТ ЭТО ГЛАВНОЕ: ставим число больше, чем у любого другого блока */
+    z-index: 99999 !important; 
+    
+    pointer-events: none; /* Чтобы они не мешали кликать, если вдруг перекроют кнопку */
+    animation: toastIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* На всякий случай убедимся, что контейнер их не прячет */
+#popup-container {
+    position: relative;
+    z-index: 100000;
+}
+@keyframes toastIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+
+
+/* --- СЕКЦИЯ 3: ПРОСТРАНСТВО (СТИЛЬ ИЗ 1 УРОКА) --- */
+
+.third-lesson-area {
+    margin-top: 180px !important; /* Увеличил отступ, чтобы секции дышали */
+    padding-bottom: 150px;
+}
+
+.results-wrapper-v3 {
+    display: flex;
+    flex-direction: column;
+    gap: 80px; /* Расстояние между парой "Воздух" и парой "Переносы" */
+    align-items: center;
+    margin-top: 60px;
+}
+
+/* ТВОЙ ОРИГИНАЛЬНЫЙ КОД КАРТОЧЕК */
+.results-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.result-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+}
+
+.result-header {
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.result-body {
+    position: relative;
+    display: inline-block;
+}
+
+.result-img {
+    width: 100%;
+    max-width: 250px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+}
+
+.indicator-icon {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: #fff;
+    border: 4px solid #060108;
+}
+
+/* Цвета для ОШИБКИ */
+.result-card.error .result-header { color: #ff4b6b; }
+.result-card.error .indicator-icon { 
+    background: #ff4b6b; 
+    box-shadow: 0 0 20px rgba(255, 75, 107, 0.4); 
+}
+.result-card.error:hover { border-color: rgba(255, 75, 107, 0.3); }
+
+/* Цвета для УСПЕХА */
+.result-card.success .result-header { color: #00ff73; }
+.result-card.success .indicator-icon { 
+    background: #00ff73; 
+    box-shadow: 0 0 20px rgba(0, 255, 115, 0.4); 
+}
+.result-card.success:hover { border-color: rgba(0, 255, 115, 0.3); }
+
+.result-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-10px);
+}
+
+
+/* --- SECTION 4: HORIZONTAL SCANS STYLE --- */
+
+.horizontal-results-stack {
+    display: flex;
+    flex-direction: column; /* Ставим карточки в стопку */
+    align-items: center;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+/* Широкая карточка */
+.result-card.wide-layout {
+    width: 100%;
+    max-width: 850px; /* Оптимальная ширина для горизонталок */
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 24px;
+}
+
+.result-img-wide {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    filter: drop-shadow(0 15px 40px rgba(0,0,0,0.6));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: block;
+}
+
+/* Поправка иконки для широкого формата */
+.result-card.wide-layout .indicator-icon {
+    bottom: -15px;
+    right: 10px;
+}
+
+/* Ховер эффект остается как в 1 уроке */
+.result-card.wide-layout:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 255, 115, 0.3);
+}
+
+/* --- PRO COMPARISON MODULE --- */
+
+.pro-comparison-module {
+    margin-top: 60px;
+    background: #0d0d12;
+    border: 1px solid rgba(176, 38, 255, 0.2);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+}
+
+.module-header {
+    background: #15151a;
+    padding: 15px 30px;
+    border-bottom: 1px solid #222;
+}
+
+.module-tag {
+    font-size: 10px;
+    font-weight: 900;
+    color: #b026ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.module-main {
+    display: grid;
+    grid-template-columns: 1fr 100px; /* Изображение + Панель ползунка */
+    background: #000;
+}
+
+/* Вьюпорт с наложением */
+.overlap-viewport {
+    position: relative;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(circle, #1a1a20 1px, transparent 1px);
+    background-size: 30px 30px; /* Сетка как в дизайн-редакторах */
+}
+
+.img-base {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+}
+
+.img-overlay {
+    position: absolute;
+    top: 40px; /* Соответствует паддингу вьюпорта */
+    max-width: calc(100% - 80px); /* 40px + 40px */
+    height: auto;
+    opacity: 0.5;
+    pointer-events: none; /* Чтобы не мешала скроллу */
+}
+
+/* Вертикальный ползунок */
+.control-sidebar {
+    background: #15151a;
+    border-left: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.control-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #555;
+    text-transform: uppercase;
+    transform: rotate(-90deg);
+    margin-bottom: 60px;
+    margin-top: 20px;
+}
+
+.vertical-slider-container {
+    height: 250px;
+    display: flex;
+    align-items: center;
+}
+
+#opacity-slider {
+    -webkit-appearance: slider-vertical; /* Для Safari/Chrome */
+    appearance: slider-vertical;
+    width: 8px;
+    height: 100%;
+    background: #222;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Стилизация ползунка для Chrome */
+#opacity-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #b026ff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #b026ff;
+}
+
+.percent-display {
+    margin-top: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    color: #b026ff;
+}
+
+.module-footer {
+    padding: 20px;
+    background: #0d0d12;
+    border-top: 1px solid #222;
+}
+
+.footer-hint {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+
+/* --- MESSENGER UI --- */
+.lumi-final-section { padding: 100px 0; background: #050508; }
+
+.lumi-chat-card {
+    max-width: 500px; margin: 0 auto; background: #0d0d12;
+    border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); overflow: hidden;
+}
+
+.chat-head { padding: 20px; background: rgba(176,38,255,0.03); border-bottom: 1px solid #1a1a20; }
+.chat-user { display: flex; align-items: center; gap: 15px; }
+.chat-ava { width: 50px; height: 50px; border-radius: 12px; border: 2px solid #b026ff; object-fit: cover; }
+.chat-name { display: block; font-weight: 900; font-size: 16px; color: #fff; }
+.chat-online { font-size: 10px; color: #00ff8c; text-transform: uppercase; }
+
+.chat-content { padding: 25px; display: flex; flex-direction: column; gap: 12px; }
+.chat-msg { background: #1a1a22; padding: 15px 20px; border-radius: 18px 18px 18px 4px; font-size: 14px; color: #ccc; line-height: 1.5; }
+.chat-msg.promo { border-left: 3px solid #b026ff; background: linear-gradient(90deg, rgba(176,38,255,0.04), transparent); }
+
+.chat-actions { padding: 20px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 15px; background: #0a0a0f; }
+.chat-link, .chat-btn-main { 
+    padding: 14px; border-radius: 12px; font-weight: 900; border: none; cursor: pointer; transition: 0.3s;
+    text-align: center; text-decoration: none; font-size: 13px; font-family: 'Montserrat';
+}
+.chat-link { background: #1a1a20; color: #888; }
+.chat-btn-main { background: #b026ff; color: #fff; box-shadow: 0 8px 20px rgba(176,38,255,0.2); }
+.chat-btn-main:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(176,38,255,0.4); }
+
+/* --- MODAL UI --- */
+.lumi-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(15px); display: none; justify-content: center; align-items: center; z-index: 10000;
+}
+
+.lumi-modal-box {
+    background: #09090e; width: 480px; padding: 45px; border-radius: 35px;
+    border: 1px solid rgba(176, 38, 255, 0.2); position: relative; color: #fff;
+}
+
+.lumi-modal-close {
+    position: absolute; top: 20px; right: 20px; background: none; border: none;
+    color: #444; font-size: 30px; cursor: pointer; transition: 0.3s;
+}
+.lumi-modal-close:hover { color: #ff4d4d; }
+
+.lumi-form-grid { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
+.lumi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+/* Кастомные инпуты */
+.lumi-form-grid input {
+    width: 100%; background: #111116; border: 1px solid #1a1a20;
+    padding: 16px; border-radius: 16px; color: #fff; outline: none; transition: 0.3s; font-size: 14px;
+}
+.lumi-form-grid input:focus { border-color: #b026ff; background: #15151e; }
+
+/* --- CUSTOM SELECTS --- */
+.lumi-select { position: relative; user-select: none; }
+.lumi-select-trigger {
+    background: #111116; border: 1px solid #1a1a20; padding: 16px; border-radius: 16px;
+    color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 14px; transition: 0.3s;
+}
+.lumi-select-trigger:hover { border-color: #b026ff; }
+.lumi-arrow { border: solid #b026ff; border-width: 0 2px 2px 0; padding: 3px; transform: rotate(45deg); transition: 0.3s; }
+
+.lumi-options {
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+    background: #0d0d12; border: 1px solid #1a1a20; border-radius: 16px;
+    padding: 8px; z-index: 100; display: none; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+.lumi-select.open .lumi-options { display: block; }
+.lumi-select.open .lumi-arrow { transform: rotate(-135deg); }
+
+.lumi-opt { padding: 12px 16px; border-radius: 10px; color: #888; cursor: pointer; transition: 0.2s; font-size: 14px; }
+.lumi-opt:hover { background: rgba(176, 38, 255, 0.1); color: #fff; }
+
+/* --- CUSTOM CHECKBOX --- */
+.lumi-check-container { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.lumi-check-container input { display: none; }
+.lumi-checkmark {
+    width: 22px; height: 22px; background: #111116; border: 2px solid #1a1a20;
+    border-radius: 8px; position: relative; transition: 0.3s;
+}
+.lumi-check-container input:checked + .lumi-checkmark { background: #b026ff; border-color: #b026ff; }
+.lumi-check-container input:checked + .lumi-checkmark::after {
+    content: '✓'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: #fff; font-weight: 900;
+}
+.lumi-check-text { font-size: 13px; color: #666; }
+
+.lumi-send-btn {
+    background: #00ff8c; color: #000; font-weight: 900; padding: 18px;
+    border-radius: 18px; border: none; cursor: pointer; transition: 0.3s; margin-top: 10px; font-family: 'Montserrat';
+}
+.lumi-send-btn:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(0, 255, 140, 0.3); }
+
+/* --- АНИМАЦИИ ПОЯВЛЕНИЯ --- */
+
+/* Общий класс для элементов, которые будут анимироваться */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px); /* Слегка сдвинуты вниз */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Элемент, который уже появился */
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Специфические задержки для разных элементов */
+.intro-card:nth-child(1), .theory-grid-v3 > div:nth-child(1) { transition-delay: 0.1s; }
+.intro-card:nth-child(2), .theory-grid-v3 > div:nth-child(2) { transition-delay: 0.2s; }
+.intro-card:nth-child(3) { transition-delay: 0.3s; }
+
+.pro-comparison-module { transition-delay: 0.3s; }
+.module-header, .module-footer { transition-delay: 0.4s; }
+.overlap-viewport, .control-sidebar { transition-delay: 0.5s; }
+
+/* Анимации для сообщений чата */
+.lumi-chat-card .chat-msg { transition-delay: 0.3s; }
+.lumi-chat-card .chat-msg.promo { transition-delay: 0.4s; }
+.lumi-chat-card .chat-actions { transition-delay: 0.5s; }

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Lumiere Solo — Висячая пунктуация</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="editor-body">
+
+    <section class="lesson-intro reveal active lesson-header-fix">
+        <div class="container">
+            <div class="section-header">
+                <div class="header-bg-icon">¶</div>
+                <h2 class="section-title">Висячая пунктуация</h2>
+                <p class="section-subtitle">Оптическая компенсация знаков в бабле</p>
+            </div>
+            
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <h3 class="theory-title">Что это такое?</h3>
+                    <p class="theory-text">Это вынос знаков за визуальную границу текста. Без этого буквы кажутся смещенными из-за "легких" точек.</p>
+                </div>
+                <div class="intro-card">
+                    <h3 class="theory-title">Как лечить?</h3>
+                    <p class="theory-text">Добавь "пустой вес" слева: либо невидимыми точками (метод закрашивания), либо пробелами.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lab-section">
+        <div class="container">
+            <div id="popup-container"></div>
+
+            <div class="editor-frame">
+                <aside class="editor-sidebar">
+                    <span class="sidebar-label">Инструменты</span>
+                    <div class="tool-item">
+                        <button id="paint-white" class="color-swatch-white" title="Закрасить точки"></button>
+                        <p class="tool-caption">Закрасить ввод</p>
+                    </div>
+                    <button onclick="location.reload()" class="btn-reset-ui">Сбросить холст</button>
+                </aside>
+
+                <main class="editor-canvas">
+                    <div class="axis-guide"></div>
+                    <div class="manga-bubble-pro">
+                        <div class="input-wrapper">
+                            <span id="user-input-zone" contenteditable="true" spellcheck="false"></span><span class="static-text">ХАЙ...</span>
+                        </div>
+                        <div class="reference-line">ХАЙ</div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <section class="lesson-section third-lesson-area">
+    <div class="container">
+        <div class="section-header">
+            <div class="header-bg-icon">A</div>
+            <h2 class="section-title">Пространство и Ритм</h2>
+            <p class="section-subtitle">Правила композиции внутри баллона</p>
+        </div>
+
+        <div class="results-wrapper-v3">
+            
+            <div class="theory-block-info" style="text-align: center;">
+                <h3 class="theory-title" style="font-size: 22px; margin-bottom: 10px;">Воздух в бабле</h3>
+                <p class="theory-text-light" style="font-size: 16px; margin-bottom: 30px;">Соблюдай дистанцию в 1.5 буквы от края.</p>
+                
+                <div class="results-container">
+                    <div class="result-card error">
+                        <div class="result-header">Неправильно</div>
+                        <div class="result-body">
+                            <img src="img2/bubleno.png" class="result-img">
+                            <div class="indicator-icon">✕</div>
+                        </div>
+                    </div>
+                    <div class="result-card success">
+                        <div class="result-header">Правильно</div>
+                        <div class="result-body">
+                            <img src="img2/bublerig.png" class="result-img">
+                            <div class="indicator-icon">✓</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theory-block-info" style="text-align: center;">
+                <h3 class="theory-title" style="font-size: 22px; margin-bottom: 10px;">Чистота чтения</h3>
+                <p class="theory-text-light" style="font-size: 16px; margin-bottom: 30px;">Много переносов затрудняет чтение. Лучше пожертвуй формой ради комфорта читателя.</p>
+                
+                <div class="results-container">
+                    <div class="result-card error">
+                        <div class="result-header">Неправильно</div>
+                        <div class="result-body">
+                            <img src="img2/bubleno2.png" class="result-img">
+                            <div class="indicator-icon">✕</div>
+                        </div>
+                    </div>
+                    <div class="result-card success">
+                        <div class="result-header">Правильно</div>
+                        <div class="result-body">
+                            <img src="img2/bublerig2.png" class="result-img">
+                            <div class="indicator-icon">✓</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="lesson-section spacing-xl third-lesson-area">
+    <div class="container">
+        <div class="section-header">
+            <div class="header-bg-icon">原</div>
+            <h2 class="section-title">Гармония с оригиналом</h2>
+            <p class="section-subtitle">Секрет идеального подбора кегля</p>
+        </div>
+
+        <div class="intro-grid">
+            <div class="intro-card">
+                <h3 class="theory-title">Следование за автором</h3>
+                <p class="theory-text">Верстальщик должен стремиться максимально приблизиться к <b>исходному размеру оригинала</b>. Японский автор не просто так выбрал этот размер — он задает темп чтения.</p>
+            </div>
+            <div class="intro-card">
+                <h3 class="theory-title">Главное правило</h3>
+                <p class="theory-text">Не пытайся заполнить облачка, увеличивая шрифт. Пустота в бабле — это нормально, если она была в оригинале. <b>Читаемость &gt; Объем.</b></p>
+            </div>
+        </div>
+
+        <div class="pro-comparison-module">
+            <div class="module-header">
+                <span class="module-tag">Lumiere Solo | Interactive</span>
+            </div>
+            
+            <div class="module-main">
+                <div class="overlap-viewport">
+                    <img src="img2/jap_orig.png" class="img-base">
+                    <img src="img2/your_type.png" class="img-overlay" id="overlap-target">
+                </div>
+
+                <aside class="control-sidebar">
+                    <span class="control-label">Opacity</span>
+                    <div class="vertical-slider-container">
+                        <input type="range" id="opacity-slider" min="0" max="100" value="50" step="1">
+                    </div>
+                    <div class="percent-display"><span id="opacity-val">50</span>%</div>
+                </aside>
+            </div>
+            
+            <div class="module-footer">
+                <p class="footer-hint">Используй вертикальный ползунок для просмотра адаптации</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="lumi-final-section">
+    <div class="container">
+        <div class="lumi-chat-card">
+            <div class="chat-head">
+                <div class="chat-user">
+                    <img src="img2/ava2.png" alt="askt" class="chat-ava">
+                    <div class="chat-meta">
+                        <span class="chat-name">askt</span>
+                        <span class="chat-online">Online</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-content">
+                <div class="chat-msg">
+                    Всех благодарю за прочтение! Конечно, я буду дополнять мануал, но пока ручки устали. Пишите, если нашли ошибки!
+                </div>
+                <div class="chat-msg promo">
+                    Ищу людей в <b>Lumiere Solo</b>. Сейчас я один, вступив к нам, ты получишь личное обучение и поможешь проекту!
+                </div>
+            </div>
+
+            <div class="chat-actions">
+                <a href="https://t.me/askttttt" target="_blank" class="chat-link">Связаться</a>
+                <button class="chat-btn-main" onclick="toggleLumiModal(true)">Вступить в команду</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="lumi-modal-overlay" id="joinModal">
+    <div class="lumi-modal-box">
+        <button class="lumi-modal-close" onclick="toggleLumiModal(false)">×</button>
+        <div class="lumi-modal-header">
+            <h3>Стань частью Lumiere</h3>
+            <p>Заполни анкету, и я свяжусь с тобой</p>
+        </div>
+        
+        <form class="lumi-form-grid" id="lumiForm">
+            <div class="lumi-row">
+                <input type="text" id="form-nick" placeholder="Ваш ник" required>
+                <input type="number" id="form-age" placeholder="Возраст" required>
+            </div>
+
+            <div class="lumi-row">
+                <div class="lumi-select" id="select-gender">
+                    <div class="lumi-select-trigger"><span>Ваш пол</span><div class="lumi-arrow"></div></div>
+                    <div class="lumi-options">
+                        <div class="lumi-opt" data-value="Мужской">Мужской</div>
+                        <div class="lumi-opt" data-value="Женский">Женский</div>
+                    </div>
+                    <input type="hidden" id="form-gender">
+                </div>
+
+                <div class="lumi-select" id="select-role">
+                    <div class="lumi-select-trigger"><span>Желаемая роль</span><div class="lumi-arrow"></div></div>
+                    <div class="lumi-options">
+                        <div class="lumi-opt" data-value="Тайпер">Тайпер</div>
+                        <div class="lumi-opt" data-value="Клинер">Клинер</div>
+                        <div class="lumi-opt" data-value="Переводчик">Переводчик</div>
+                        <div class="lumi-opt" data-value="Редактор">Редактор</div>
+                        <div class="lumi-opt" data-value="Бета">Бета</div>
+                    </div>
+                    <input type="hidden" id="form-role">
+                </div>
+            </div>
+
+            <input type="text" id="form-time" placeholder="Свободное время (ч/д)">
+            <input type="text" id="form-duration" placeholder="Надолго ли вы к нам?">
+            <input type="text" id="form-ignore" placeholder="Какой шанс игнора?">
+
+            <label class="lumi-check-container">
+                <input type="checkbox" id="form-cookies">
+                <span class="lumi-checkmark"></span>
+                <span class="lumi-check-text">Согласен работать за печеньки 🍪</span>
+            </label>
+
+            <button type="button" class="lumi-send-btn" onclick="sendToTelegram()">Отправить заявку</button>
+        </form>
+    </div>
+</div>
+
+    <script src="lesson2.js"></script>
+</body>
+</html>
